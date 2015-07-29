@@ -4,6 +4,10 @@ class Api::V1::TransactionsController < ApplicationController
     respond_with Transaction.find_by(id: params[:id])
   end
 
+  def index
+    respond_with Transaction.all
+  end
+
   def random
     respond_with Transaction.all.sample
   end

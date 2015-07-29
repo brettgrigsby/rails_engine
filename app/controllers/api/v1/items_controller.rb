@@ -17,11 +17,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def index
-    if params[:merchant_id]
-      respond_with Item.where(merchant_id: params[:merchant_id])
-    elsif params[:invoice_id]
-      respond_with Invoice.find_by(id: params[:invoice_id]).items
-    end
+    respond_with Item.all
   end
 
   def invoice_items

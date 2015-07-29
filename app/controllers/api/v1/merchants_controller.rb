@@ -28,6 +28,10 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.revenue_for_date params[:date]
   end
 
+  def items
+    respond_with Merchant.find_by(id: params[:id]).items
+  end
+
   def merchant_revenue
     if params[:date]
       respond_with Merchant.find_by(id: params[:id]).revenue_for_date params[:date]
@@ -41,6 +45,14 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def pending
-    respond_with Merchant.find_by(id:params[:id]).customers_with_pending_invoices
+    respond_with Merchant.find_by(id: params[:id]).customers_with_pending_invoices
+  end
+
+  def invoices
+    respond_with Merchant.find_by(id: params[:id]).invoices
+  end
+
+  def index
+    respond_with Merchant.all
   end
 end

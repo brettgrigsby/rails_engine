@@ -4,6 +4,10 @@ class Api::V1::CustomersController < ApplicationController
     respond_with Customer.find_by(id: params[:id])
   end
 
+  def index
+    respond_with Customer.all
+  end
+
   def random
     respond_with Customer.all.sample
   end
@@ -22,5 +26,9 @@ class Api::V1::CustomersController < ApplicationController
 
   def transactions
     respond_with Customer.find_by(id: params[:customer_id]).invoices.flat_map {|i| i.transactions}
+  end
+
+  def favorite_merchant
+    respond_with Customer.find_by(id: params[:id]).favorite_merchant
   end
 end
