@@ -15,5 +15,9 @@ class Api::V1::TransactionsController < ApplicationController
   def search_all
     respond_with Transaction.where(params.first.first => params.first.last)
   end
+
+  def invoice
+    respond_with Transaction.find_by(id: params[:transaction_id]).invoice
+  end
 end
 
