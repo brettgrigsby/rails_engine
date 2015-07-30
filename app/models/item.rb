@@ -8,7 +8,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.most_items(count)
-    successful_items.group(:name).sum(:quantity).sort_by(&:last).last(count.to_i).reverse.map { |name, _| Item.find_by(name: name) }
+    successful_items.group(:name).sum(:quantity).sort_by(&:last).last(count.to_i).map { |name, _| Item.find_by(name: name) }
   end
 
   def best_day

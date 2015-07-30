@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get '/items/find_all', to: 'items#search_all'
       get '/items/most_revenue', to: 'items#most_revenue'
       get '/items/most_items', to: 'items#most_items'
+      get '/items/:id/best_day', to: 'items#best_day'
       resources :items, only: [:show, :index] do
         get '/invoice_items', to: 'items#invoice_items'
         get '/merchant', to: 'items#merchant'
@@ -39,8 +40,8 @@ Rails.application.routes.draw do
       get '/invoices/find_all', to: 'invoices#search_all'
       get '/invoices/:id/invoice_items', to: 'invoices#invoice_items'
       get '/invoices/:id/items', to: 'invoices#items'
+      get '/invoices/:id/transactions', to: 'invoices#transactions'
       resources :invoices, only: [:show, :index] do
-        resources :transactions, only: [:index]
         get '/customer', to: 'invoices#customer'
         get '/merchant', to: 'invoices#merchant'
       end
