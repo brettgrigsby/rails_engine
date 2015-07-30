@@ -2,6 +2,7 @@ class Merchant < ActiveRecord::Base
   has_many :items
   has_many :invoices
   has_many :customers, through: :invoices
+  has_many :invoice_items, through: :invoices
 
   def total_revenue
     invoices.successful.joins(:invoice_items).sum("quantity * unit_price") / 100
